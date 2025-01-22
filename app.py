@@ -7,8 +7,9 @@ from flask_migrate import Migrate
 
 app = Flask(__name__)
 # app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///data.db'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:Seun%40112@localhost/todoapp'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:Seun%40112@localhost/todoapp'
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://emmyily:Seun%40112@localhost/tododb'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://emmyily:Seun%40112@localhost/tododb'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 app.config['SECRET_KEY'] = 'whateverjustgetonwithit!'
@@ -39,8 +40,8 @@ class User(db.Model, UserMixin):
 #for the tasks
 class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String,unique=True)
-    description = db.Column(db.String,unique=True)
+    title = db.Column(db.String(100),unique=True)
+    description = db.Column(db.String(100),unique=True)
     done = db.Column(db.Boolean, default='Not completed')
     date_created = db.Column(db.DateTime, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False, name = 'fk_user_id')

@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %} todo_app {% endblock %}
+{% block header %} <h1>Todo List.....</h1>{% endblock %}
+{% block body %}
+    {% if v | length < 1 %}
+    <p>There are no tasks.... Create one here!</p>
+    {% else %}
+    <div class="content">
+<table>
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Date-created</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+     {% for item in v %}
+    <tr>
+        <td>{{ item.title }}</td>
+        <td>{{ item.description }}</td>
+        <td>{{ item.done }}</td>
+        <td>{{ item.date_created }}</td>
+        <td>
+        <a href="/delete/{{ item.id }}">delete</a>
+        <a href="/edit/{{ item.id }}">edit</a>
+            <a href="/done/{{ item.id }}">mark as done</a>
+    </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+ {% endif %}
+</table>
+    <form action="/" method="post">
+        <input type="text" id="content" name="title" placeholder="your task....">
+        <input type="text" id="content" name="description" placeholder="description....">
+        <input type="submit" value="Add task">
+
+    </form>
+    </div>
+    <br>
+    <a href="/logout">logout</a>
+{% endblock %}

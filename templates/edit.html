@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %} todo_app {% endblock %}
+{% block header %} <h1>Edit task</h1>{% endblock %}
+{% block body %}
+<form action="/edit/{{ task.id }}" method="post">
+        <input type="text" id="content" name="title" value="{{ task.title }}">
+        <input type="text" id="content" name="description" value="{{ task.description }}">
+        <input type="submit" value="save changes">
+
+    </form>
+{% endblock %}

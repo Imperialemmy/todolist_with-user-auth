@@ -6,10 +6,10 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 from flask_migrate import Migrate
 
 app = Flask(__name__)
-# app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///data.db'
+app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///data.db'
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:Seun%40112@localhost/todoapp'
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://emmyily:Seun%40112@localhost/tododb'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:Seun%40112@127.0.0.1:3306/tododb'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:Seun%40112@127.0.0.1:3306/tododb'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 app.config['SECRET_KEY'] = 'whateverjustgetonwithit!'

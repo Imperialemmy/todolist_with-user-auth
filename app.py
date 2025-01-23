@@ -7,9 +7,9 @@ from flask_migrate import Migrate
 
 app = Flask(__name__)
 # app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///data.db'
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:Seun%40112@localhost/todoapp'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://todo_1qkr_user:YWrE5sRkiPoONeM9Du1a8UmZVbVxKgPi@dpg-cu92i03qf0us73db9q8g-a.oregon-postgres.render.com/todo_1qkr'
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://emmyily:Seun%40112@localhost/tododb'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:Seun%40112@127.0.0.10:3306/tododb'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:Seun%40112@127.0.0.10:3306/tododb'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 app.config['SECRET_KEY'] = 'whateverjustgetonwithit!'
@@ -17,6 +17,8 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
 migrate = Migrate(app, db)
+ALLOWED_HOSTS = ['*']  # Allow all hosts or specify specific domains/IPs for security
+
 
 #for user login
 class User(db.Model, UserMixin):
